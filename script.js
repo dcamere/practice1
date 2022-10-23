@@ -35,7 +35,7 @@ const handleCount = (operation) => {
     }
     count--;
   }
-
+  
   inputText.value = count;
   console.log(count);
   // operation === "plus" ? count++ : count--;
