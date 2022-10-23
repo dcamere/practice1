@@ -54,6 +54,7 @@ table {
 .spinner {
     display: flex;
     margin: 20px;
+    position: relative;
 }
 
 .spinner__minus, .spinner__plus {
@@ -79,4 +80,11 @@ table {
     border-color: lightslategray;
     border: 1px lightslategray solid;
     text-align: center;
+}
+
+.spinner__error {
+    color: red;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
 }
