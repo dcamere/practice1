@@ -31,7 +31,7 @@ const pokemonTemplate = (pokemon) => {
             }).join(" ")
         }
     </div>
-    `; 
+    `;
 }
 
 const buildPokemonCard = (pokemon) => {
