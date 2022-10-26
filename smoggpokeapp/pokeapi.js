@@ -1,5 +1,6 @@
 let btnSearch;
 let input;
+let pkmnData
 const API_ENDPOINT = "https://pokeapi.co/api/v2/pokemon/";
 
 
@@ -7,9 +8,37 @@ const API_ENDPOINT = "https://pokeapi.co/api/v2/pokemon/";
 const cache = () =>{
     btnSearch = document.querySelector(".btnSearch");
     input = document.querySelector(".input");
+    pkmnData = document.querySelector(".pkmnData");
 
 }
+const capitalizeWord = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+// const returnTwoTypes = (pkmnMove) =>{
+//     if (pkmnMove){
+//         return (pkmnMove)
+//     } else {
+//         return false
+//     }
+// }
+const cardTemplate = (pokemon) =>{
+    return `
+    <h3>${capitalizeWord(pokemon.name)}</h3>
+    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+    <img src="${pokemon.sprites.back_default}" alt="${pokemon.name} back">
+    <p>Order: ${pokemon.order} </p>
+    <p>Types: 
+    <ul><li>${pokemon.types[0].type.name}</li>
+    <li>${pokemon.types[1].type.name}</li></ul>
+    </p>
+    <p>Weight: ${pokemon.weight} </p>`
+}
+const buildData = (pokemon) =>{
+    const newDiv = document.createElement("div");
+    newDiv.innerHTML = cardTemplate(pokemon);
+    pkmnData.appendChild(newDiv);
 
+}
 const getPkmn = (e) =>{
 
     //this retrieves user's input, turns it into string and into lower case
@@ -18,7 +47,12 @@ const getPkmn = (e) =>{
     
     fetch(API_ENDPOINT + pkmnToSearch)
     .then (response => response.json())
-    .then (response => console.log(response))
+    .then (response => {
+        console.log(response);
+        buildData(response);
+        
+        
+    })
 
 }
 
