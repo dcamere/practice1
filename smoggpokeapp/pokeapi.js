@@ -28,8 +28,15 @@ const cardTemplate = (pokemon) =>{
     <img src="${pokemon.sprites.back_default}" alt="${pokemon.name} back">
     <p>Order: ${pokemon.order} </p>
     <p>Types: 
-    <ul><li>${pokemon.types[0].type.name}</li>
-    <li>${pokemon.types[1].type.name}</li></ul>
+    ${pokemon && pokemon.types[0] && pokemon.types[0] && pokemon.types[0].name ?
+        /* smogg, igual es mejor hacer un map en vez de estas condicionales 
+        y preguntar si existe length en el array, mañana lo vemos xd*/
+        `<ul><li>${pokemon?.types[0]?.type?.name}</li>` : ""
+    }
+    ${
+        pokemon && pokemon.types[1] && pokemon.types[1].name ?
+       ` <li>${pokemon?.types[1]?.type?.name}</li></ul>` : ""
+    }
     </p>
     <p>Weight: ${pokemon.weight} </p>`
 }
